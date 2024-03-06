@@ -1,0 +1,46 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "managerckSUB";
+package managerserver;
+
+service ManagerServe {
+  rpc ResumoVendas(ResumeVenda) returns (NotificacaoResumo);
+  rpc DownloadVendas(DownloadRequest) returns (stream ResumoResponse);
+  rpc UploadArquiv(UploadArquivo) returns (NotificacaoResumo);
+  rpc NotificarFimResumo(NotificarFimResumoRequest) returns (NotificarFimResumoResponse);
+}
+
+message ResumeVenda {
+  string Resume = 1;
+}
+
+message NotificacaoResumo {
+  string Mensagem = 1;
+  string ArquivoResumido = 2;
+}
+
+message DownloadRequest {
+  string DownloadResumo = 1;
+}
+
+message ResumoResponse {
+  bytes Conteudo = 1;
+}
+
+message UploadArquivo {
+  string cliente_id = 1;
+  string ArquivoUpload = 2;
+  bytes ConteudoArquivo = 3;
+}
+
+
+
+message NotificarFimResumoRequest {
+  string nomeExchange = 1;  // Nome do Exchange para notificação
+  string nomeArquivoResumo = 2;  // Nome do arquivo de resumo
+}
+
+message NotificarFimResumoResponse {
+  // Adicione campos conforme necessário
+}

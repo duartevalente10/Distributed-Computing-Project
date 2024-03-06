@@ -1,0 +1,46 @@
+------------------------------
+-----------Manager------------
+------------------------------
+
+-Ligar manager App no pc:
+
+java -jar UserApp-1.0-SNAPSHOT-jar-with-dependencies.jar 7500
+
+-------------------------------
+------------Server-------------
+-------------------------------
+
+-Ligar server manager na vm tf-node1:
+
+java -jar ManegerServer-1.0-SNAPSHOT-jar-with-dependencies.r 7500
+
+--------------------------------
+---------Spread Group-----------
+--------------------------------
+
+-Ligar na vm-lab4 o deamon:
+
+/usr/local/sbin/spread -c /usr/local/etc/vmsSpread.conf > /tmp/spreadlogs 2>&1 &
+
+-Ligar os workers e configurar cada um:
+
+java -cp Worker-1.0-SNAPSHOT-jar-with-dependencies.jar org.example.Worker
+
+--------------------------------
+-------------Rabbit-------------
+--------------------------------
+
+-Ligar o docker e o container do rabbit na vm:
+
+sudo systemctl start docker
+docker start $(docker ps -a -q -f status=exited)
+
+--------------------------------
+---------PointOfSales-----------
+--------------------------------
+
+-Ligar o ponto de vendas no pc:
+
+java -jar UserApp-1.0-SNAPSHOT-jar-with-dependencies.jar 7500 
+
+
